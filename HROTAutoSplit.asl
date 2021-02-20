@@ -27,11 +27,11 @@ init
 	sig_mainMenuOFF.OnFound = (proc, scanner, ptr) => !proc.ReadPointer(ptr, out ptr) ? IntPtr.Zero : proc.ReadPointer(ptr)+0x9C;
 
 	IntPtr ptr_gameIsRunning = TheScanner.Scan(sig_gameIsRunning);
-	print(ptr_gameIsRunning.ToString("x"));
+	//print(ptr_gameIsRunning.ToString("x"));
 	IntPtr ptr_endScreen = TheScanner.Scan(sig_endScreen);
-	print(ptr_endScreen.ToString("x"));
+	//print(ptr_endScreen.ToString("x"));
 	IntPtr ptr_mainMenuOFF = TheScanner.Scan(sig_mainMenuOFF);
-	print(ptr_mainMenuOFF.ToString("x"));
+	//print(ptr_mainMenuOFF.ToString("x"));
 	
 	vars.gameIsRunning = new MemoryWatcher<int>(ptr_gameIsRunning);
 	vars.endScreen = new MemoryWatcher<int>(ptr_endScreen);
@@ -51,7 +51,7 @@ update
 start
 {
 	if (vars.mainMenuOFF.Current > vars.mainMenuOFF.Old) {
-		print("RUN START");
+		//print("RUN START");
 		return true;
 	}
 }
@@ -66,7 +66,7 @@ split
 reset
 {
 	if (vars.mainMenuOFF.Current < vars.mainMenuOFF.Old && vars.gameIsRunning.Current != 1) {
-		print("RUN RESET");
+		//print("RUN RESET");
 		return true;
 	}
 }
